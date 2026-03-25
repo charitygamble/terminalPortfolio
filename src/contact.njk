@@ -1,0 +1,31 @@
+---
+title: "contact"
+layout: base.njk
+eleventyNavigation:
+  key: "contact"
+  parent: "projects"
+  order: 10
+---
+
+<div class="terminal-contact">
+  <p class="prompt">guest@cgambledev:~$ mail --to admin</p>
+  
+  <form action="https://portfolio-mail.charlibydesign.workers.dev/" method="POST">
+    <div class="form-group">
+      <label for="name">FROM:</label>
+      <input type="text" id="name" name="name" placeholder="identity_required" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="email">REPLY-TO:</label>
+      <input type="email" id="email" name="_replyto" placeholder="email@address.com" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="message">MESSAGE:</label>
+      <textarea id="message" name="message" rows="5" placeholder="enter_payload_here..." required></textarea>
+    </div>
+    
+    <button type="submit" class="btn-terminal">transmit_data</button>
+  </form>
+</div>

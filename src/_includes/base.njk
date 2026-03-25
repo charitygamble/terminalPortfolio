@@ -7,7 +7,7 @@
         <title>Charity Gamble - {{ title }}</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">   
         <link href="/assets/css/style.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/203c33e277.js" crossorigin="anonymous"></script>
     </head>
@@ -24,22 +24,24 @@
   [ SAFE_MODE: OFF ]
 </button>
   <div class="terminal-path">
-  guest@portfolio:~
-  {%- if eleventyNavigation.key -%}
-    {%- set navPages = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.key) -%}
-    {%- for entry in navPages -%}
-      /{{ entry.key | lower | replace(" ", "-") }}
-    {%- endfor -%}
-    /{{ eleventyNavigation.key | lower | replace(" ", "-") }}
-  {%- endif -%}
+  guest@cgambledev:~
+  {# Defensive check to prevent 'Node does not exist' fatal crashes #}
+{% if eleventyNavigation and eleventyNavigation.key %}
+  {% set navPages = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.key) if collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.key) else [] %}
+  {% for entry in navPages %}
+    <a href="{{ entry.url }}">{{ entry.title }}</a> /
+  {% endfor %}
+{% endif %}
 </div>
 </header>
   <nav class="terminal-nav">
     <ul>
-      <li><a href="/">[ Home ]</a></li>
-      <li><a href="/projects/">[ Projects ]</a></li>
-      <li><a href="/labs/">[ Lab_Notes ]</a></li>
-      <li><a href="/contact/">[ Contact ]</a></li>
+      <li><a href="/">[ <span class="cmd">cd</span> /home ]</a></li>
+      <li><a href="/about/">[ whomai ]</a></li>
+      <li><a href="/neofetch/">[ neofetch ]</a></li>
+      <li><a href="/projects/">[ <span class="cmd">cd</span> /projects ]</a></li>
+      <li><a href="/labs/">[ <span class="cmd">cd</span> /lab-notes ]</a></li>
+      <li><a href="/contact/">[ <span class="cmd">cd</span> /contact ]</a></li>
     </ul>
   </nav>
 

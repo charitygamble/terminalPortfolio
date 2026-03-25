@@ -3,24 +3,79 @@
   --text-color: #00ff41; /* Classic Matrix/Terminal Green */
   --accent-color: #008f11;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --term-dim: #008f11;    /* Dimmed green for regular text */
+  --term-bright: #00ff41; /* "Active" neon green for links */
+  --term-amber: #ffb86c;
+}
+
+html, body {
+  height: 1000vh;
+  overflow: hidden;
+  margin: 0;
+  background-color: var(--bg-color);
 }
 
 body {
-  background-color: #050505;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: transparent;
   color: var(--text-color);
   font-family: var(--font-mono);
   padding: 20px;
   line-height: 1.6;
+  display: block;
+}
+
+body.safe-mode,
+html:has(body.safe-mode) {
+  background-color: var(--bg-color);
+}
+
+/* Base Link Style */
+a {
+  color: var(--text-color, #00ff41); /* Use your terminal green */
+  text-decoration: none; /* Remove the distracting underline */
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+/* Hover State */
+a:hover {
+  color: #fff; /* Brighten to white on hover */
+  background-color: rgba(0, 255, 65, 0.2); /* Faint green glow background */
+  text-decoration: underline;
+}
+
+/* Visited Links (Optional) */
+/* In a terminal, we usually don't distinguish visited links, 
+   but if you want to, use a dimmed version of your green. */
+a:visited {
+  color: #008f11; 
+}
+
+/* Special styling for links inside the .terminal-body */
+.terminal-body a::before {
+  content: "> "; /* Adds a small prompt character before links */
+  opacity: 0.5;
+  font-size: 0.8em;
 }
 
 .terminal-container {
-  max-width: 900px;
-  margin: 0 auto;
+  height: 80vh;
+  width: 95%;
+  max-width: 1000px;
+  margin: 5vh auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   border: 1px solid #333;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  overflow: hidden;
 }
 
 .terminal-bar {
+  flex-shrink: 0;
   background: #333;
   padding: 5px 15px;
   display: flex;
@@ -61,7 +116,54 @@ body {
   color: var(--bg-color);
 }
 
-.terminal-body { padding: 20px; min-height: 400px; }
+.terminal-body { 
+  flex-grow: 1;
+  padding: 20px; 
+  min-height: 400px; 
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+  overflow-y: auto;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  color: var(--term-dim);
+}
+
+.terminal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+  background-color: #333;
+  border-radius: 10px;
+}
+
+/* Make links look like clickable 'tokens' */
+.terminal-body a {
+  color: #ffb86c;;
+  font-weight: bold;
+  text-decoration: none;
+  /* Add brackets around the link using CSS */
+  padding: 0 4px;
+}
+
+.terminal-body a::before { content: "[ "; opacity: 0.5; }
+.terminal-body a::after { content: " ]"; opacity: 0.5; }
+
+/* The 'Interaction' State */
+.terminal-body a:hover {
+  background-color: rgba(255, 184, 108, 0.2);
+  color: #FFF; /* Invert: Black text on Green background */
+  text-decoration: none;
+}
+
+.nav-link span.cmd {
+  opacity: 0.6;
+  margin-right: 5px;
+}
 
 /* The Blinking Cursor */
 .cursor {
@@ -400,4 +502,267 @@ body.safe-mode .crt-overlay {
 body.safe-mode .accessibility-toggle {
   color: #50fa7b;
   border-color: #50fa7b;
+}
+
+.neofetch-container {
+  display: flex; /* This is the 'side-by-side' activator */
+  align-items: flex-start; /* Lines them up at the top */
+  gap: 30px; /* Spacing between the logo and the data */
+  font-family: var(--font-mono);
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.ascii-logo {
+  flex-shrink: 0; /* Prevents the logo from getting squished */
+  margin: 0;
+  padding: 0;
+  color: var(--term-amber);
+  line-height: 1.1; /* Adjusts the ASCII art vertically */
+}
+
+.fetch-data {
+  display: flex;
+  flex-direction: column; /* Stacks the data lines vertically */
+  flex-grow: 1; /* Lets the data fill the remaining space */
+  color: var(--text-amber); /* Make regular text white for contrast */
+}
+
+/* Key (Yellow) and Info (Dimmed White) structure */
+.key {
+  color: var(--term-amber);
+  font-weight: bold;
+}
+.val {
+  color: rgba(255,255,255, 0.7); /* Slightly dim the values for readability */
+}
+
+/* Remove the brackets only for links inside neofetch */
+.neofetch-container a::before,
+.neofetch-container a::after {
+  content: "";
+}
+
+/* Target the neofetch data rows specifically */
+.fetch-data div, 
+.fetch-data p {
+  display: block; /* Return to standard block for the container */
+  white-space: nowrap; /* Force the line to stay as one long string */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  padding: 2px 0;
+}
+
+/* Force the children to be inline "blobs" */
+.neofetch-container .key,
+.neofetch-container .val,
+.neofetch-container .fetch-data a {
+  display: inline-block; /* Becomes a 'word' in the line */
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+}
+
+/* Final attempt at stripping the bracket pseudo-elements */
+.neofetch-container .fetch-data a::before,
+.neofetch-container .fetch-data a::after {
+  content: none;
+  display: none;
+}
+
+.neofetch-container .fetch-data a {
+  color: #fff;
+  background: transparent;
+}
+
+.fetch-data div {
+  line-height: 1.2;
+  margin-bottom: 2px;
+  display: block; /* Ensures the div stays a solid container */
+}
+
+.fetch-data .key {
+  color: var(--term-amber);
+  font-weight: bold;
+}
+
+/* Optional: Add a subtle prompt effect to the very first line */
+.user-host {
+  color: var(--term-green);
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.palette-container {
+  display: inline-flex;
+  gap: 4px;
+  vertical-align: middle;
+}
+
+.block {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px; /* Optional: slightly rounded for a modern CLI feel */
+}
+
+/* Your Terminal Colors */
+.c-black   { background-color: #282a36; }
+.c-red     { background-color: #ff5555; }
+.c-green   { background-color: #50fa7b; }
+.c-amber   { background-color: #ffb86c; }
+.c-blue    { background-color: #8be9fd; }
+.c-magenta { background-color: #ff79c6; }
+.c-cyan    { background-color: #8be9fd; }
+.c-white   { background-color: #f8f8f2; }
+
+.status-ok {
+  color: var(--term-green);
+  font-weight: bold;
+}
+
+.cred-row {
+  display: flex;
+  gap: 15px;
+  font-family: var(--font-mono);
+  margin-bottom: 5px;
+}
+
+.bracket {
+  color: var(--term-amber);
+}
+
+.skills-section {
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.skill-row {
+  display: block; /* Confirmed fix for the staircase issue */
+  margin-bottom: 8px;
+}
+
+.skill-row .val {
+  color: #fff; /* Bright white for the actual skills */
+}
+
+/* Reusing your Amber for the structural brackets */
+.skill-row .val::before,
+.skill-row .val::after {
+  display: none; /* Ensure global link brackets don't double up here */
+}
+
+/* Optional: styling individual skill 'pills' */
+.skill-row span.val {
+  letter-spacing: 1px;
+}
+
+.project-list {
+  margin-top: 20px;
+  font-family: var(--font-mono);
+}
+
+.project-item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+  align-items: baseline;
+}
+
+.file-meta {
+  color: #666; /* Dimmed "metadata" color */
+  font-size: 0.9rem;
+}
+
+.file-name a {
+  /* Inherits your Amber link style automatically */
+  font-weight: bold;
+}
+
+.file-desc {
+  color: var(--term-green);
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Terminal-style Execute Button */
+.btn-terminal {
+    display: inline-block;
+    background-color: transparent;
+    color: #00ff00; /* Classic Terminal Green */
+    border: 1px solid #00ff00;
+    padding: 4px 12px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
+}
+
+.btn-terminal:hover {
+    background-color: #00ff00;
+    color: #000; /* Invert colors on hover */
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+.btn-terminal:active {
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 255, 0, 0.8);
+}
+
+/* Optional: Add a [ ] around the text for extra terminal feel */
+.btn-terminal::before {
+    content: "[ ";
+}
+
+.btn-terminal::after {
+    content: " ]";
+}
+
+.terminal-contact {
+    max-width: 600px;
+    margin-top: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: #00ff00;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.terminal-contact input, 
+.terminal-contact textarea {
+    background: transparent;
+    border: 1px solid #333;
+    border-left: 3px solid #00ff00; /* Sidebar accent */
+    color: #00ff00;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    outline: none;
+}
+
+.terminal-contact input:focus, 
+.terminal-contact textarea:focus {
+    border-color: #00ff00;
+    background: rgba(0, 255, 0, 0.05);
+}
+
+.terminal-contact textarea {
+    resize: none;
+}
+
+/* Match the button style we made earlier */
+.terminal-contact .btn-terminal {
+    margin-top: 1rem;
+    width: 100%;
 }
