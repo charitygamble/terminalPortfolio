@@ -6,6 +6,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy('src/assets');
+    eleventyConfig.addPassthroughCopy('src/labs/images');
+    eleventyConfig.addPassthroughCopy('src/projects/images');
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
     eleventyConfig.addFilter("dateString", (dateObj) => {
       return dateObj.toISOString().split('T')[0];
