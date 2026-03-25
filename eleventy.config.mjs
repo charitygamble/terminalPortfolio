@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
 import markdownIt from "markdown-it";
 import markdownItObsidian from "markdown-it-obsidian";
+import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -11,6 +12,7 @@ export default function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy('src/labs/images');
     eleventyConfig.addPassthroughCopy('src/projects/images');
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
+    eleventyConfig.addPlugin(syntaxHighlight);
 
      const mdLib = markdownIt({
       html: true,

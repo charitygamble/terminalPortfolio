@@ -12,6 +12,7 @@
         <script src="https://kit.fontawesome.com/203c33e277.js" crossorigin="anonymous"></script>
     </head>
     <body>
+      <div class="crt-overlay"></div>
         <div class="terminal-container">
   <header class="terminal-bar">
   <div class="controls">
@@ -19,6 +20,9 @@
     <span class="dot yellow"></span>
     <span class="dot green"></span>
   </div>
+          <button class="accessibility-toggle" aria-label="Toggle CRT Effects">
+  [ SAFE_MODE: OFF ]
+</button>
   <div class="terminal-path">
   guest@portfolio:~
   {%- if eleventyNavigation.key -%}
@@ -44,5 +48,7 @@
     <span class="cursor">█</span>
   </main>
 </div>
+<script src="/assests/js/copyClipboard.js"></script>
+<script src="/assets/js/safeMode.js"></script>
 </body>
 </html>

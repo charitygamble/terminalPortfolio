@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy-navigation": "^1.0.5",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
     "markdown-it": "^14.1.1",
     "markdown-it-obsidian": "^1.1.0"
   }
