@@ -1,0 +1,22 @@
+{
+  "name": "terminalportfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "start": "npx @11ty/eleventy --serve",
+    "clean:ghosts": "find ./public/assets -type f -name \"* [0-9]*.*\" -print0 | xargs -0 rm",
+    "clean:public": "rm -rf public"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@11ty/eleventy": "4.0.0-alpha.7"
+  },
+  "devDependencies": {
+    "@11ty/eleventy-navigation": "^1.0.5"
+  }
+}
