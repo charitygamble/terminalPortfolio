@@ -3,7 +3,7 @@ title: "charity gamble portfolio v2"
 date: 2026-03-25
 layout: project.njk
 tags: ["projects"]
-live_url: "https://cg-portfolio-old2.netlify.app"
+live_url: "https://cg-old-portfolio-2.netlify.app"
 repo_url: "https://github.com/charitygamble/portfolioSite"
 eleventyNavigation:
   key: "portfolio-two"

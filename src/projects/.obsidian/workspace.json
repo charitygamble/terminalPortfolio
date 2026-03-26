@@ -111,12 +111,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "portfolio-three.md",
+                "file": "portfolio-two.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "portfolio-three"
+              "title": "portfolio-two"
             }
           }
         ],
@@ -193,7 +193,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "portfolio-three.md",
+                "file": "portfolio-two.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -203,7 +203,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for portfolio-three"
+              "title": "Backlinks for portfolio-two"
             }
           },
           {
@@ -212,12 +212,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "portfolio-three.md",
+                "file": "portfolio-two.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from portfolio-three"
+              "title": "Outgoing links from portfolio-two"
             }
           },
           {
@@ -255,13 +255,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "portfolio-three.md",
+                "file": "portfolio-two.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of portfolio-three"
+              "title": "Outline of portfolio-two"
             }
           }
         ]
@@ -284,10 +284,10 @@
   },
   "active": "876b321bed912ca2",
   "lastOpenFiles": [
-    "portfolio-two.md",
-    "portfolio-three.md",
-    "codelab.md",
     "portfolio-one.md",
+    "portfolio-three.md",
+    "portfolio-two.md",
+    "codelab.md",
     "spooky-bookshelf.md",
     "cozy-books.md",
     "_templates/project.md",
