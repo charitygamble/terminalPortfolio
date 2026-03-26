@@ -9,8 +9,8 @@ export async function onRequestPost(context) {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
-      personalizations: [{ to: [{ email: "charity@charitygamble.dev" }] }],
-      from: { email: "contact@yourdomain.com", name: "Portfolio" },
+      personalizations: [{ to: [{ email: "youremail@yourdomain.com" }] }],
+      from: { email: "charity@charitygamble.dev", name: "Portfolio" },
       subject: `New Message from ${name}`,
       content: [{ type: "text/plain", value: message }]
     })
