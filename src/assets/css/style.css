@@ -766,3 +766,20 @@ body.safe-mode .accessibility-toggle {
     margin-top: 1rem;
     width: 100%;
 }
+
+.social-links {
+    margin-top: 50px;
+    font-family: 'Courier New', monospace;
+    color: #00ff00;
+}
+
+.social-links a {
+    color: #00ff00;
+    text-decoration: none;
+    border-bottom: 1px dashed #004400; /* Subtle indicator it's a link */
+}
+
+.social-links a:hover {
+    background-color: #00ff00;
+    color: #000;
+}
