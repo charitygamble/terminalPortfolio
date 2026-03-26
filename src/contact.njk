@@ -10,7 +10,7 @@ eleventyNavigation:
 <div class="terminal-contact">
   <p class="prompt">guest@cgambledev:~$ mail --to admin</p>
   
-  <form action="/submit" method="POST">
+  <form name="contact" method="POST" data-netlify="true" action="/success">
     <div class="form-group">
       <label for="name">FROM:</label>
       <input type="text" id="name" name="name" placeholder="identity_required" required>
