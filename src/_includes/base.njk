@@ -9,9 +9,27 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">   
         <link href="/assets/css/style.css" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/203c33e277.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/7ee24494c8.js" crossorigin="anonymous"></script>
     </head>
     <body>
+      <div class="desktop-sidebar">
+    <div class="icon-group">
+        <i class="fa-solid fa-terminal"></i>
+        <span>Terminal</span>
+    </div>
+    <div class="icon-group">
+        <a href="/"><i class="fa-solid fa-folder-open"></i></a><br>
+        <span>Home</span>
+    </div>
+    <div class="icon-group">
+        <i class="fa-solid fa-shield-halved"></i><br>
+        <span>Tools</span>
+    </div>
+        <div class="icon-group">
+        <a href="/assets/cgambleresume.pdf" download="cgambleresume.pdf" class="icon-group"><i class="fa-regular fa-file"></i></a><br>
+        <span>Download Résumé</span>
+    </div>
+</div>
       <div class="crt-overlay"></div>
         <div class="terminal-container">
   <header class="terminal-bar">
@@ -21,7 +39,7 @@
     <span class="dot green"></span>
   </div>
           <button class="accessibility-toggle" aria-label="Toggle CRT Effects">
-  [ SAFE_MODE: OFF ]
+  [ DISABLE_VISUAL_EFFECTS ]
 </button>
   <div class="terminal-path">
   guest@cgambledev:~
@@ -36,7 +54,7 @@
 </header>
   <nav class="terminal-nav">
     <ul>
-      <li><a href="/">[ <span class="cmd">cd</span> /home ]</a></li>
+      <li><a href="/main/">[ <span class="cmd">cd</span> /home ]</a></li>
       <li><a href="/about/">[ whomai ]</a></li>
       <li><a href="/neofetch/">[ neofetch ]</a></li>
       <li><a href="/projects/">[ <span class="cmd">cd</span> /projects ]</a></li>
@@ -46,6 +64,18 @@
   </nav>
 
   <main class="terminal-body">
+    {% if page.url == "/main.html" %}
+    <div class="login-banner">
+            <pre>
+****************************************************************
+* WARNING: AUTHORIZED ACCESS ONLY                              *
+* Kali Linux and the Dragon logo are trademarks of OffSec.     *
+* This site is a personal project and is not affiliated with   *
+* or endorsed by Offsec.                                       *
+****************************************************************
+            </pre>
+        </div>
+        {% endif %}
     {{ content | safe }}
     <span class="cursor">█</span>
   </main>

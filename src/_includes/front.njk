@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv=""X-UA-Compatible" content="IE=edge">
+        <title>Charity Gamble - {{ title }}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">   
+        <link href="/assets/css/style.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/7ee24494c8.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+      <div class="desktop-sidebar">
+    <div class="icon-group">
+        <a href="/main.html"><i class="fa-solid fa-terminal"></i></a>
+        <span>Terminal</span>
+    </div>
+    <div class="icon-group">
+        <a href="/"><i class="fa-solid fa-folder-open"></i></a><br>
+        <span>Home</span>
+    </div>
+    <div class="icon-group">
+        <i class="fa-solid fa-shield-halved"></i><br>
+        <span>Tools</span>
+    </div>
+        <div class="icon-group">
+        <a href="/assets/cgambleresume.pdf" download="cgambleresume.pdf" class="icon-group"><i class="fa-regular fa-file"></i></a><br>
+        <span>Download Résumé</span>
+    </div>
+</div>
+{{ content | safe }}
+</body>
+</html>

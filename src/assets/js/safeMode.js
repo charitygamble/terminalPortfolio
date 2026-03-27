@@ -22,7 +22,7 @@ function initSafeMode() {
             toggle.innerText = "[ ENABLE_VISUAL_EFFECTS ]";
         } else {
             localStorage.setItem('theme-safe-mode', 'disabled');
-            toggle.innerText = "[ SAFE_MODE: OFF ]";
+            toggle.innerText = "[ DISABLE_VISUAL_EFFECTS ]";
         }
     });
 }

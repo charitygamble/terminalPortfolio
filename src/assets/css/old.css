@@ -1,0 +1,783 @@
+:root {
+  --bg-color: #1a1a1a;
+  --text-color: #00ff41; /* Classic Matrix/Terminal Green */
+  --accent-color: #008f11;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --term-amber: #ffb86c;
+}
+
+html, body {
+  height: 1000vh;
+  overflow: hidden;
+  margin: 0;
+  background-color: var(--bg-color);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: transparent;
+  color: var(--text-color);
+  font-family: var(--font-mono);
+  padding: 20px;
+  line-height: 1.6;
+  display: block;
+}
+
+body.safe-mode,
+html:has(body.safe-mode) {
+  background-color: var(--bg-color);
+}
+
+/* Base Link Style */
+a {
+  color: var(--text-color, #00ff41); /* Use your terminal green */
+  text-decoration: none; /* Remove the distracting underline */
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+/* Hover State */
+a:hover {
+  color: #fff; /* Brighten to white on hover */
+  background-color: rgba(0, 255, 65, 0.2); /* Faint green glow background */
+  text-decoration: underline;
+}
+
+/* Visited Links (Optional) */
+/* In a terminal, we usually don't distinguish visited links, 
+   but if you want to, use a dimmed version of your green. */
+a:visited {
+  color: #008f11; 
+}
+
+/* Special styling for links inside the .terminal-body */
+.terminal-body a::before {
+  content: "> "; /* Adds a small prompt character before links */
+  opacity: 0.5;
+  font-size: 0.8em;
+}
+
+.terminal-container {
+  height: 80vh;
+  width: 95%;
+  max-width: 1000px;
+  margin: 5vh auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #333;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.terminal-bar {
+  flex-shrink: 0;
+  background: #333;
+  padding: 5px 15px;
+  display: flex;
+  align-items: center; /* This keeps dots, button, and path on the same horizontal line */
+  gap: 15px; /* Adds consistent spacing between elements */
+  padding: 5px 15px;
+  font-size: 0.8rem;
+  height: 30px; /* Fixed height prevents "jumping" when text changes */
+}
+
+.terminal-path {
+  margin-left: auto;
+  color: var(--text-color);
+}
+
+.dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.terminal-nav ul {
+  list-style: none;
+  padding: 15px;
+  border-bottom: 1px dashed var(--accent-color);
+  margin: 0;
+}
+
+.terminal-nav li { display: inline; margin-right: 20px; }
+
+.terminal-nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.terminal-nav a:hover {
+  background: var(--text-color);
+  color: var(--bg-color);
+}
+
+.terminal-body { 
+  flex-grow: 1;
+  padding: 20px; 
+  min-height: 400px; 
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+  overflow-y: auto;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  color: var(--term-dim);
+}
+
+.terminal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+  background-color: #333;
+  border-radius: 10px;
+}
+
+/* Make links look like clickable 'tokens' */
+.terminal-body a {
+  color: #ffb86c;;
+  font-weight: bold;
+  text-decoration: none;
+  /* Add brackets around the link using CSS */
+  padding: 0 4px;
+}
+
+.terminal-body a::before { content: "[ "; opacity: 0.5; }
+.terminal-body a::after { content: " ]"; opacity: 0.5; }
+
+/* The 'Interaction' State */
+.terminal-body a:hover {
+  background-color: rgba(255, 184, 108, 0.2);
+  color: #FFF; /* Invert: Black text on Green background */
+  text-decoration: none;
+}
+
+.nav-link span.cmd {
+  opacity: 0.6;
+  margin-right: 5px;
+}
+
+/* The Blinking Cursor */
+.cursor {
+  display: inline-block;
+  background: var(--text-color);
+  width: 10px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.terminal-table th {
+  text-align: left;
+  border-bottom: 1px solid var(--accent-color);
+  color: var(--accent-color);
+}
+
+.terminal-table td {
+  padding: 8px 0;
+}
+
+.status {
+  color: #ffb86c; /* Orange color for a "system" feel */
+  font-size: 0.8rem;
+}
+
+.lab-note {
+  max-width: 80ch; /* Standard terminal character width for readability */
+  margin: 0 auto;
+}
+
+.note-header {
+  margin-bottom: 2rem;
+  color: var(--accent-color); /* The darker green we set earlier */
+  font-size: 0.9rem;
+}
+
+.stat-line {
+  margin-bottom: 4px;
+}
+
+.header-divider {
+  border: 0;
+  border-top: 1px dashed var(--accent-color);
+  margin-top: 15px;
+}
+
+/* Make sure your Obsidian-generated content looks right */
+.note-content h1, .note-content h2 {
+  color: var(--text-color);
+  border-bottom: 1px solid #333;
+  padding-bottom: 5px;
+  margin-top: 2rem;
+}
+
+.note-content code {
+  background: #2a2a2a;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.note-content pre {
+  background: #111;
+  padding: 15px;
+  border: 1px solid #333;
+  overflow-x: auto;
+}
+
+.note-footer {
+  margin-top: 3rem;
+  border-top: 1px solid #333;
+  padding-top: 1rem;
+}
+
+.end-of-file {
+  background: var(--text-color);
+  color: var(--bg-color);
+  display: inline-block;
+  padding: 0 5px;
+  font-weight: bold;
+}
+
+/**
+ * Terminal PrismJS Theme
+ * Optimized for 11ty + Cybersecurity Portfolios
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+    color: #f8f8f2; /* Off-white text */
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    tab-size: 4;
+    hyphens: none;
+    background: #0d0d0d; /* Deep black background */
+}
+
+/* Code block container */
+pre[class*="language-"] {
+    padding: 1.5em;
+    margin: 1rem 0;
+    overflow: auto;
+    border: 1px solid #333;
+    border-left: 4px solid var(--text-color, #00ff41); /* Highlighted left border */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+    padding: .2em .4em;
+    border-radius: .3em;
+    background: #2a2a2a;
+    color: #ffb86c;
+}
+
+/* Syntax Tokens */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #6272a4; /* Dimmed blue-gray for comments */
+    font-style: italic;
+}
+
+.token.punctuation {
+    color: #f8f8f2;
+}
+
+.token.namespace {
+    opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+    color: #ff79c6; /* Pink/Magenta */
+}
+
+.token.boolean,
+.token.number {
+    color: #bd93f9; /* Purple */
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+    color: #50fa7b; /* Terminal Green */
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+    color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+    color: #f1fa8c; /* Yellow/Amber */
+}
+
+.token.keyword {
+    color: #8be9fd; /* Cyan */
+    font-weight: bold;
+}
+
+.token.regex,
+.token.important {
+    color: #ffb86c; /* Orange */
+}
+
+.token.important,
+.token.bold {
+    font-weight: bold;
+}
+
+.token.italic {
+    font-style: italic;
+}
+
+/* Line Highlighting (if used) */
+.line-highlight {
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 2px solid #50fa7b;
+}
+
+.copy-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--text-color, #00ff41);
+  border: 1px solid var(--text-color, #00ff41);
+  padding: 2px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, background 0.2s;
+}
+
+.copy-button:hover {
+  opacity: 1;
+  background: var(--text-color, #00ff41);
+  color: #000;
+}
+
+.copy-button.copied {
+  border-color: #50fa7b;
+  color: #50fa7b;
+}
+
+/* This sits on top of everything but doesn't block clicks */
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: repeating-linear-gradient(
+    rgba(18, 16, 16, 0) 0,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(18, 16, 16, 0) 100%
+  );
+  background-size: 100% 4px; /* Adjust 4px to make lines thicker/thinner */
+  z-index: 999;
+  pointer-events: none; /* Crucial: allows clicking through to links */
+}
+
+@keyframes crt-flicker {
+  0% { opacity: 0.98; }
+  5% { opacity: 0.95; }
+  10% { opacity: 0.99; }
+  15% { opacity: 0.94; }
+  20% { opacity: 0.98; }
+  25% { opacity: 0.96; }
+  30% { opacity: 0.99; }
+  100% { opacity: 1.0; }
+}
+
+/* Apply this to your main terminal container or body */
+.terminal-container {
+  animation: crt-flicker 0.15s infinite;
+  position: relative;
+}
+
+.crt-overlay::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.03);
+  opacity: 0;
+  z-index: 1000;
+  pointer-events: none;
+  animation: static-noise 0.2s infinite;
+}
+
+@keyframes static-noise {
+  0% { transform: translate(0,0) }
+  10% { transform: translate(-1%,-1%) }
+  20% { transform: translate(1%,1%) }
+  30% { transform: translate(-2%,1%) }
+  /* ... repeat and vary to taste ... */
+}
+
+/* 1. Automatically disable for users with system-level reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .terminal-container {
+    animation: none !important;
+  }
+  .crt-overlay {
+    display: none !important;
+  }
+}
+
+/* 2. Manual Kill Switch: If 'safe-mode' class is added to <body> */
+body.safe-mode .terminal-container {
+  animation: none !important;
+}
+
+body.safe-mode .crt-overlay {
+  display: none !important;
+}
+
+/* 3. Subtle styling for the toggle button */
+.accessibility-toggle {
+  /* Reset positioning so it sits in the flex row */
+  position: relative;
+  margin: 0; 
+  
+  /* Minimalist Terminal Look */
+  background: transparent;
+  color: #888; /* Dimmed by default */
+  border: 1px solid #555;
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.accessibility-toggle:hover {
+  color: #fff;
+  border-color: #fff;
+}
+
+/* Optional: Make it glow slightly when Safe Mode is actually ON */
+body.safe-mode .accessibility-toggle {
+  color: #50fa7b;
+  border-color: #50fa7b;
+}
+
+.neofetch-container {
+  display: flex; /* This is the 'side-by-side' activator */
+  align-items: flex-start; /* Lines them up at the top */
+  gap: 30px; /* Spacing between the logo and the data */
+  font-family: var(--font-mono);
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.ascii-logo {
+  flex-shrink: 0; /* Prevents the logo from getting squished */
+  margin: 0;
+  padding: 0;
+  color: var(--term-amber);
+  line-height: 1.1; /* Adjusts the ASCII art vertically */
+}
+
+.fetch-data {
+  display: flex;
+  flex-direction: column; /* Stacks the data lines vertically */
+  flex-grow: 1; /* Lets the data fill the remaining space */
+  color: var(--text-amber); /* Make regular text white for contrast */
+}
+
+/* Key (Yellow) and Info (Dimmed White) structure */
+.key {
+  color: var(--term-amber);
+  font-weight: bold;
+}
+.val {
+  color: rgba(255,255,255, 0.7); /* Slightly dim the values for readability */
+}
+
+/* Remove the brackets only for links inside neofetch */
+.neofetch-container a::before,
+.neofetch-container a::after {
+  content: "";
+}
+
+/* Target the neofetch data rows specifically */
+.fetch-data div, 
+.fetch-data p {
+  display: block; /* Return to standard block for the container */
+  white-space: nowrap; /* Force the line to stay as one long string */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  padding: 2px 0;
+}
+
+/* Force the children to be inline "blobs" */
+.neofetch-container .key,
+.neofetch-container .val,
+.neofetch-container .fetch-data a {
+  display: inline-block; /* Becomes a 'word' in the line */
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+}
+
+/* Final attempt at stripping the bracket pseudo-elements */
+.neofetch-container .fetch-data a::before,
+.neofetch-container .fetch-data a::after {
+  content: none;
+  display: none;
+}
+
+.neofetch-container .fetch-data a {
+  color: #fff;
+  background: transparent;
+}
+
+.fetch-data div {
+  line-height: 1.2;
+  margin-bottom: 2px;
+  display: block; /* Ensures the div stays a solid container */
+}
+
+.fetch-data .key {
+  color: var(--term-amber);
+  font-weight: bold;
+}
+
+/* Optional: Add a subtle prompt effect to the very first line */
+.user-host {
+  color: var(--term-green);
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.palette-container {
+  display: inline-flex;
+  gap: 4px;
+  vertical-align: middle;
+}
+
+.block {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px; /* Optional: slightly rounded for a modern CLI feel */
+}
+
+/* Your Terminal Colors */
+.c-black   { background-color: #282a36; }
+.c-red     { background-color: #ff5555; }
+.c-green   { background-color: #50fa7b; }
+.c-amber   { background-color: #ffb86c; }
+.c-blue    { background-color: #8be9fd; }
+.c-magenta { background-color: #ff79c6; }
+.c-cyan    { background-color: #8be9fd; }
+.c-white   { background-color: #f8f8f2; }
+
+.status-ok {
+  color: var(--term-green);
+  font-weight: bold;
+}
+
+.cred-row {
+  display: flex;
+  gap: 15px;
+  font-family: var(--font-mono);
+  margin-bottom: 5px;
+}
+
+.bracket {
+  color: var(--term-amber);
+}
+
+.skills-section {
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.skill-row {
+  display: block; /* Confirmed fix for the staircase issue */
+  margin-bottom: 8px;
+}
+
+.skill-row .val {
+  color: #fff; /* Bright white for the actual skills */
+}
+
+/* Reusing your Amber for the structural brackets */
+.skill-row .val::before,
+.skill-row .val::after {
+  display: none; /* Ensure global link brackets don't double up here */
+}
+
+/* Optional: styling individual skill 'pills' */
+.skill-row span.val {
+  letter-spacing: 1px;
+}
+
+.project-list {
+  margin-top: 20px;
+  font-family: var(--font-mono);
+}
+
+.project-item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+  align-items: baseline;
+}
+
+.file-meta {
+  color: #666; /* Dimmed "metadata" color */
+  font-size: 0.9rem;
+}
+
+.file-name a {
+  /* Inherits your Amber link style automatically */
+  font-weight: bold;
+}
+
+.file-desc {
+  color: var(--term-green);
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Terminal-style Execute Button */
+.btn-terminal {
+    display: inline-block;
+    background-color: transparent;
+    color: #00ff00; /* Classic Terminal Green */
+    border: 1px solid #00ff00;
+    padding: 4px 12px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
+}
+
+.btn-terminal:hover {
+    background-color: #00ff00;
+    color: #000; /* Invert colors on hover */
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+.btn-terminal:active {
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 255, 0, 0.8);
+}
+
+/* Optional: Add a [ ] around the text for extra terminal feel */
+.btn-terminal::before {
+    content: "[ ";
+}
+
+.btn-terminal::after {
+    content: " ]";
+}
+
+.terminal-contact {
+    max-width: 600px;
+    margin-top: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: #00ff00;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.terminal-contact input, 
+.terminal-contact textarea {
+    background: transparent;
+    border: 1px solid #333;
+    border-left: 3px solid #00ff00; /* Sidebar accent */
+    color: #00ff00;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    outline: none;
+}
+
+.terminal-contact input:focus, 
+.terminal-contact textarea:focus {
+    border-color: #00ff00;
+    background: rgba(0, 255, 0, 0.05);
+}
+
+.terminal-contact textarea {
+    resize: none;
+}
+
+/* Match the button style we made earlier */
+.terminal-contact .btn-terminal {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.social-links {
+    margin-top: 50px;
+    font-family: 'Courier New', monospace;
+    color: #00ff00;
+}
+
+.social-links a {
+    color: #00ff00;
+    text-decoration: none;
+    border-bottom: 1px dashed #004400; /* Subtle indicator it's a link */
+}
+
+.social-links a:hover {
+    background-color: #00ff00;
+    color: #000;
+}
