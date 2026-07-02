@@ -13,13 +13,11 @@
   "author": "",
   "license": "ISC",
   "type": "module",
-  "dependencies": {
-    "@11ty/eleventy": "4.0.0-alpha.7"
-  },
   "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
     "@11ty/eleventy-navigation": "^1.0.5",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
-    "markdown-it": "^14.1.1",
+    "markdown-it": "^14.3.0",
     "markdown-it-obsidian": "^1.1.0"
   }
 }

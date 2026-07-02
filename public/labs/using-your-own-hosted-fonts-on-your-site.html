@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv=""X-UA-Compatible" content="IE=edge">
+        <title>Charity Gamble - Using Your Own Hosted Fonts on Your Site</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">   
+        <link href="/assets/css/style.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/7ee24494c8.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+      <div class="desktop-sidebar">
+    <div class="icon-group">
+        <a href="#terminal" title="Terminal" aria-label="Terminal"><i class="fa-solid fa-terminal"></i></a>
+        <span>Terminal</span>
+    </div>
+    <div class="icon-group">
+        <a href="#" title="Home" aria-label="Home"><i class="fa-solid fa-folder-open"></i></a><br>
+        <span>Home</span>
+    </div>
+    <div class="icon-group">
+        <i class="fa-solid fa-shield-halved"></i><br>
+        <span>Tools</span>
+    </div>
+        <div class="icon-group">
+        <a href="/assets/cgambleresume.pdf" download="cgambleresume.pdf" class="icon-group" title="Download my Résumé" aria-label="Download my Résumé"><i class="fa-regular fa-file"></i></a><br>
+        <span>Download Résumé</span>
+    </div>
+</div>
+      <div class="crt-overlay"></div>
+        <div id="terminal" class="terminal-container">
+  <header class="terminal-bar">
+  <div class="controls">
+    <a href="#"><span class="dot red"></span></a>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+  </div>
+          <button class="accessibility-toggle" aria-label="Toggle CRT Effects">
+  [ DISABLE_VISUAL_EFFECTS ]
+</button>
+  <div class="terminal-path">
+  guest@cgambledev:~
+  
+
+</div>
+</header>
+  <nav class="terminal-nav">
+    <ul>
+      <li><a href="/">[ <span class="cmd">cd</span> /home ]</a></li>
+      <li><a href="/about/">[ whomai ]</a></li>
+      <li><a href="/neofetch/">[ neofetch ]</a></li>
+      <li><a href="/projects/">[ <span class="cmd">cd</span> /projects ]</a></li>
+      <li><a href="/labs/">[ <span class="cmd">cd</span> /lab-notes ]</a></li>
+      <li><a href="/contact/">[ <span class="cmd">cd</span> /contact ]</a></li>
+    </ul>
+  </nav>
+
+  <main class="terminal-body">
+    
+    <article class="lab-note">
+  <header class="note-header">
+    <div class="stat-line">FILE: using_your_own_hosted_fonts_on_your_site.md</div>
+    <div class="stat-line">DATE: 2025-09-29</div>
+    <div class="stat-line">TAGS: [ labs, post ]</div>
+    <div class="stat-line">USER: charity@cgambledev</div>
+    <hr class="header-divider">
+  </header>
+
+  <section class="note-content">
+    <p>For the longest time, I used to use <a href="https://fonts.google.com">Google Fonts</a> to serve custom fonts to my website. But then I started hearing about how using Google Fonts to serve custom fonts could be slowing my sites down, and I wondered how I could mitigate that. This article from <a href="https://www.capitalnumbers.com/blog/self-hosting-vs-google-fonts/">Capital Numbers</a> does a great job of explaining what you can do and why you should do it.</p>
+<p>If you're in the crowd of TLDR, the basic gist of the article is that it is up to you whether you choose to import/link Google Fonts and if you use the pre-connect solution or if you want to do what I did, which is host your fonts on your website. But... how do you do that?</p>
+<h2>Grab Your Fonts</h2>
+<p>First, grab your fonts. You need to be sure they are legal for you to use on the web - so if you're purchasing custom fonts from a website, make sure the license you're receiving includes web usage. You can also download the fonts themselves from Google Fonts, as we know those are licensed for web use. You <em>may</em> be able to download fonts from Adobe Fonts if you have a subscription but as I don't subscribe to Adobe products, I don't know, and even if you can download them, I don't know if they are licensed for web use.</p>
+<h2>Convert Your Fonts</h2>
+<p>Now that you have your fonts, you'll see that they are quite likely in TTF or True Type Format. That's all well and good if you're installing them on your computer, but if you're putting them on the web to use in your website, you'll need to convert them to WOFF or WOFF2. But how?</p>
+<p>Well, the easiest way I've found is to go to <a href="https://cloudconvert.com/woff-converter">CloudConvert</a> and add the files in, then convert them to either WOFF or WOFF2. Usually I convert them to both, but you can do one or the other.</p>
+<h2>Use Your Fonts</h2>
+<p>Ok, you have your converted fonts, but how do you use them? Well, first, put them in a folder in your website's directory. I tend to put them in a folder called &quot;fonts&quot;. I use the 11ty Static Site Generator, so my folder structure for where I put the fonts is is usually something like:<br>
+site-name<br><br>
+--src<br><br>
+---assets<br><br>
+---css<br><br>
+---fonts <strong>&lt;- fonts go here</strong><br><br>
+---_includes</p>
+<p>You'll be calling your fonts in your CSS file... depending on where your CSS file lives in your document tree, you may need to adjust your path. The code to do this is as follows:</p>
+<pre><code>
+@font-face {
+	font-family: 'Font Name';
+	src: url('/folder-where-your-font-lives/font.woff2') format(wofff2);
+	font-style: normal;
+	font-weight: normal;
+	font-display: swap;
+	}
+</code></pre>
+<p>Now, let's see what this looks like for a specific font. I have Montserrat converted to WOFF2 for a website I'm working on. I have it in regular, italic, and semi-bold. Here is how the declarations will look:</p>
+<pre><code>
+@font-face {
+	font-family: 'Montserrat';
+	src: url('/fonts/Montserrat.woff2') format(woff2);
+	font-style: normal;
+	font-weight: normal;
+	font-display: swap;
+	}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('/fonts/Monsterrat-Italic.woff2') format(woff2);
+	font-style: italic;
+	font-weight: normal;
+	font-display: swap;
+	}
+	
+@font-face {
+	font-family: 'Montserrat';
+	src: url('/fonts/Monsterrat-SemiBold.woff2') format(woff2);
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	}
+</code></pre>
+<p>As you can see, we have three declarations for one font. Why? Because each one has different parameters for font-style and font-weight. Montserrat is normal for both. Montserrat Italic is italic for font-style, but normal for font-weight. And Montserrat Semi Bold is normal for font-style, but 600 for font-weight.</p>
+<p>All of them are font-display: swap, which basically just means that if there is a moment where they haven't yet loaded, a fall-back font will be displayed if one is set - otherwise it will display browser default fonts. This is to ensure that even if the font hasn't yet loaded for some reason, your text will still appear to your users.</p>
+<p>I realize this trick isn't new, but I'm putting this out there for those who might not know about it yet. I just learned about it a few months ago and I've been coding websites since HTML4.01 was the standard!</p>
+<p>If you have any questions, feel free to contact me through the link on the home page of this site!</p>
+
+  </section>
+
+  <footer class="note-footer">
+    <div class="end-of-file">(END)</div>
+    <nav class="post-navigation">
+      <a href="/labs/">[ BACK_TO_DIRECTORY ]</a>
+    </nav>
+  </footer>
+</article>
+    <span class="cursor">█</span>
+  </main>
+</div>
+<script src="/assets/js/stayHere.js"></script>
+<script src="/assests/js/copyClipboard.js"></script>
+<script src="/assets/js/safeMode.js"></script>
+</body>
+</html>

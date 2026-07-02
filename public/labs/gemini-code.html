@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv=""X-UA-Compatible" content="IE=edge">
+        <title>Charity Gamble - My Experience Using Gemini Code</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">   
+        <link href="/assets/css/style.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/7ee24494c8.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+      <div class="desktop-sidebar">
+    <div class="icon-group">
+        <a href="#terminal" title="Terminal" aria-label="Terminal"><i class="fa-solid fa-terminal"></i></a>
+        <span>Terminal</span>
+    </div>
+    <div class="icon-group">
+        <a href="#" title="Home" aria-label="Home"><i class="fa-solid fa-folder-open"></i></a><br>
+        <span>Home</span>
+    </div>
+    <div class="icon-group">
+        <i class="fa-solid fa-shield-halved"></i><br>
+        <span>Tools</span>
+    </div>
+        <div class="icon-group">
+        <a href="/assets/cgambleresume.pdf" download="cgambleresume.pdf" class="icon-group" title="Download my Résumé" aria-label="Download my Résumé"><i class="fa-regular fa-file"></i></a><br>
+        <span>Download Résumé</span>
+    </div>
+</div>
+      <div class="crt-overlay"></div>
+        <div id="terminal" class="terminal-container">
+  <header class="terminal-bar">
+  <div class="controls">
+    <a href="#"><span class="dot red"></span></a>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+  </div>
+          <button class="accessibility-toggle" aria-label="Toggle CRT Effects">
+  [ DISABLE_VISUAL_EFFECTS ]
+</button>
+  <div class="terminal-path">
+  guest@cgambledev:~
+  
+
+</div>
+</header>
+  <nav class="terminal-nav">
+    <ul>
+      <li><a href="/">[ <span class="cmd">cd</span> /home ]</a></li>
+      <li><a href="/about/">[ whomai ]</a></li>
+      <li><a href="/neofetch/">[ neofetch ]</a></li>
+      <li><a href="/projects/">[ <span class="cmd">cd</span> /projects ]</a></li>
+      <li><a href="/labs/">[ <span class="cmd">cd</span> /lab-notes ]</a></li>
+      <li><a href="/contact/">[ <span class="cmd">cd</span> /contact ]</a></li>
+    </ul>
+  </nav>
+
+  <main class="terminal-body">
+    
+    <article class="lab-note">
+  <header class="note-header">
+    <div class="stat-line">FILE: my_experience_using_gemini_code.md</div>
+    <div class="stat-line">DATE: 2025-09-30</div>
+    <div class="stat-line">TAGS: [ labs, post ]</div>
+    <div class="stat-line">USER: charity@cgambledev</div>
+    <hr class="header-divider">
+  </header>
+
+  <section class="note-content">
+    <p>When I'm on <a href="https://x.com/cgambledev">X</a>, <a href="https://bsky.app/profile/charitygambledev.bsky.social">BlueSky</a>, or <a href="https://threads.net/charitygamble.dev">Threads</a>, it seems like everyone is hyping up &quot;vibe coding&quot; their apps, software, websites, etc.. I'm not a huge fan of using generative AI, but everyone keeps talking about how much it improves their workflow. So, I decided to give the whole &quot;vibe coding&quot; thing a shot.</p>
+<p>As a note, a huge part of my resistance to the use of generative AI tools in my workspace is that I'm technically not allowed to use them in my school space. I have used it - usually as a way to clarify concepts. My prompts usually start with &quot;Explain <em>concept I don't get</em> to me like I'm five years old&quot; and go from there. But I'm not actually allowed to use it to answer test questions, quiz questions, essay questions, etc. I <em>can</em> use it to help find a subject to write a paper on, collect data for a paper, etc., but I can't use it to write the paper.</p>
+<h2>Picking an AI Assistant</h2>
+<p>When I'm on X, BlueSky, or Threads, most of the software/app/web devs are talking about how they use Claude or ChatGPT for their vibe coding assistant.</p>
+<p>Now I've used ChatGPT a couple of times, but since I can only use a few prompts per day as a free user, I vetoed that one. I created an account for Claude, but again, I can only use so many prompts before I'd have to wait for a while to ask more questions or prompt it for more code. I'm not a fan of Copilot - whether Microsoft or GitHub, so I vetoed that one. Besides, I literally switched from VS Code to <a href="https://vscodium.com">VSCodium</a> just to get away from Copilot.</p>
+<p>I decided to see what kind of extensions VSCodium had in the library. I saw there was an extension for <a href="https://gemini.google.com">Gemini</a> and since I actually use Gemini quite a bit (a year of free Pro doesn't hurt), I decided to give it a try.</p>
+<h2>I Have an Assistant, Now What?</h2>
+<p>Well, now I have an assistant, what do I do with it?</p>
+<p>First, I set up a new Eleventy project - initialized the folder as a local Git repository, created my npm init file, installed Eleventy 4.0.0 as a dev dependency. I set up my .eleventy.js file, the index.njk file, and then the style.css file. Once that was done, I started asking Gemini to do things.</p>
+<h2>The Site Building Process</h2>
+<p>The first thing I asked Gemini to do was to use the existing index.njk and style.css files to create the boilerplate HTML template and create the sideways navigation bar you see to your left. To my delight, Gemini was able to do so easily, although it created a brand new index.njk and style.css file instead of using the existing ones. Whatever...</p>
+<p>Then I asked Gemini to create a color scheme for both light and dark modes. So it did. But only in black/white/gray for light mode and dark blues for dark mode. I liked the dark mode colors, but for light mode, I wanted some color. So I asked Gemini to change it... and got olive green and white. Ok, we can work with that, I guess.</p>
+<p>We went through creating pages, adding content, more Eleventy build errors than I have ever had when coding any website I made by hand. I had to reconstruct the directory/file structure by hand a few times and make some edits to fix things like site titles, links, etc. I had to ask Gemini to fix the errors - multiple times. I also asked Gemini to please use purple instead of olive green because... no thanks.</p>
+<p>But, in the end, we got to the site you see here.</p>
+<p>Yes, this site was the one that was basically coded out by Gemini. There were some additions/changes made to the code, but for the most part, the entire thing was coded by Gemini.</p>
+<h2>What I Learned</h2>
+<p>What I've learned from this experience is the following:</p>
+<h3>Learn How to Create Good Prompts</h3>
+<p>Learn how to create good prompts. Be as clear as possible when you create your prompts. The clearer you are when writing your prompts, the more likely your generative AI assistant is to be able to properly help you create what you want.</p>
+<h3>Expect Errors</h3>
+<p>Expect your generative AI assistant to get it wrong.</p>
+<p>Expect that your AI assistant will write JavaScript that works great, but that your code editor's screening for licensing issues will pick up on. Also, expect that no matter how many times your AI assistant re-writes the code, it will either be full of errors or it will still trip your code editor's alarms about licensed code.</p>
+<p>Expect, especially if you are using a static site generator, that you will experience build errors and it will take multiple rounds of your generative AI rewriting code and trying other solutions before it works again.</p>
+<h3>Don't Rely on the AI Alone</h3>
+<p>You're going to want/need to make changes. It is totally OK to make changes. Add code (just be aware if there are site problems later, your AI assistant will probably mess with it), add CSS styles, create folders, whatever you need to do.</p>
+<h3>It Takes Longer Than You Think</h3>
+<p>It always seems like the people who talk about using generative AI to help them build sites, apps, etc., are talking about how much faster it is. Now, yes, it <em>was</em> faster than it would have been normally. I'm not saying it wasn't.</p>
+<p>But it took longer than I thought it would. I think I spent a good three-and-a-half to four hours building the site - and many times I can build sites like this in about that by myself.</p>
+<h2>Conclusion</h2>
+<p>Would I do this again? Yes - but I wouldn't have Gemini create as much of the site as I did. I would ask Gemini to make navigation menu responsive or to help me set up the toggle for the light and dark modes. But I definitely wouldn't have it create the entire website for me.</p>
+<p>I honestly can't really say the experience was fun, but I can say that it was a learning experience.</p>
+
+  </section>
+
+  <footer class="note-footer">
+    <div class="end-of-file">(END)</div>
+    <nav class="post-navigation">
+      <a href="/labs/">[ BACK_TO_DIRECTORY ]</a>
+    </nav>
+  </footer>
+</article>
+    <span class="cursor">█</span>
+  </main>
+</div>
+<script src="/assets/js/stayHere.js"></script>
+<script src="/assests/js/copyClipboard.js"></script>
+<script src="/assets/js/safeMode.js"></script>
+</body>
+</html>
