@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv=""X-UA-Compatible" content="IE=edge">
+        <title>Charity Gamble - Open TBR Part One</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">   
+        <link href="/assets/css/style.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/7ee24494c8.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+      <div class="desktop-sidebar">
+    <div class="icon-group">
+        <a href="#terminal" title="Terminal" aria-label="Terminal"><i class="fa-solid fa-terminal"></i></a>
+        <span>Terminal</span>
+    </div>
+    <div class="icon-group">
+        <a href="#" title="Home" aria-label="Home"><i class="fa-solid fa-folder-open"></i></a><br>
+        <span>Home</span>
+    </div>
+    <div class="icon-group">
+        <i class="fa-solid fa-shield-halved"></i><br>
+        <span>Tools</span>
+    </div>
+        <div class="icon-group">
+        <a href="/assets/cgambleresume.pdf" download="cgambleresume.pdf" class="icon-group" title="Download my Résumé" aria-label="Download my Résumé"><i class="fa-regular fa-file"></i></a><br>
+        <span>Download Résumé</span>
+    </div>
+</div>
+      <div class="crt-overlay"></div>
+        <div id="terminal" class="terminal-container">
+  <header class="terminal-bar">
+  <div class="controls">
+    <a href="#"><span class="dot red"></span></a>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+  </div>
+          <button class="accessibility-toggle" aria-label="Toggle CRT Effects">
+  [ DISABLE_VISUAL_EFFECTS ]
+</button>
+  <div class="terminal-path">
+  guest@cgambledev:~
+  
+
+</div>
+</header>
+  <nav class="terminal-nav">
+    <ul>
+      <li><a href="/">[ <span class="cmd">cd</span> /home ]</a></li>
+      <li><a href="/about/">[ whomai ]</a></li>
+      <li><a href="/neofetch/">[ neofetch ]</a></li>
+      <li><a href="/projects/">[ <span class="cmd">cd</span> /projects ]</a></li>
+      <li><a href="/labs/">[ <span class="cmd">cd</span> /lab-notes ]</a></li>
+      <li><a href="/contact/">[ <span class="cmd">cd</span> /contact ]</a></li>
+    </ul>
+  </nav>
+
+  <main class="terminal-body">
+    
+    <article class="lab-note">
+  <header class="note-header">
+    <div class="stat-line">FILE: open_tbr_part_one.md</div>
+    <div class="stat-line">DATE: 2026-07-07</div>
+    <div class="stat-line">TAGS: [ labs, post ]</div>
+    <div class="stat-line">USER: charity@cgambledev</div>
+    <hr class="header-divider">
+  </header>
+
+  <section class="note-content">
+    <p>One of the things I've noticed that a lot of the, at least seemingly, successful people in the Cybersecurity/Programming/Development space do is they create useful apps and programs. Some use Python, some use JavaScript, and others use TypeScript. I had taken a class on Python in 2019 or 2020 and so I have the basics, but it's been a while since I've actually made anything in Python. So, I decided to create something useful - even if only I find it useful. And that is how the project for OpenTBR was created.</p>
+<h2>What is OpenTBR?</h2>
+<p>OpenTBR is a TBR tracker. What is a TBR? It is the list of books one wishes to eventually get around to reading - a &quot;to be read&quot; list/shelf/pile. So what will OpenTBR do? Well, it will allow you to add books to your TBR database, edit or delete those books, and view your TBR list. At least to start. Right now, I'm working on something simple - creating a window for the program to run in.</p>
+<h2>Getting Started on OpenTBR</h2>
+<h3>Creating a Folder and Initializing Git</h3>
+<p>My first task was to open up VS Codium and create my project folder, which ended up being titled OpenTBR. Easy, peasy. Most of us probably already know how to create a new folder. I opened the terminal in VS Codium and initialized the Git repo with</p>
+<pre><code>
+git init
+</code></pre>
+<p>Note: If you don't have Git installed on your system, you will need to do so. You can go to <a href="https://git-scm.com" target="_blank">Git SCM</a> to learn how to install Git on your own system.</p>
+<h3>Installing customtkinter</h3>
+<p>After that, I installed customtkinter onto my system, since I already had Python installed. I went to the search bar on my Task Bar and searched CMD to bring up a command prompt, then typed the following into the system. If you don't have Python installed already, you'll need to install it first or this isn't going to work. Go to <a href="https://python.org" target="_blank">Welcome to Python.org</a> for more information on how to install Python.</p>
+<pre><code>
+pip install customtkinter
+</code></pre>
+<h3>Creating the App File</h3>
+<p>Back in VS Codium, I created a new file in my OpenTBR folder and named it <a href="http://app.py">app.py</a>. This <a href="http://app.py">app.py</a> file is going to house my Python code.</p>
+<h3>Creating a Window</h3>
+<p>I don't want this program to run completely in the terminal - I want it to have a GUI. To have a GUI, I need a window. This is, in part, where customtkinter comes in. There are two ways to get a window using customtkinter. They both start the same way:</p>
+<pre><code>
+import customtkinter as ctk
+</code></pre>
+<h4>Method 1 &gt; Function</h4>
+<p>Now that we've imported customtkinter and told Python to accept just all-lowercase ctk in lieu of typing out the full name of the library, we create our window. The first way is to use the following:</p>
+<pre><code>
+import customtkinter as ctk
+
+app = ctk.CTk()
+app.geometry("1200x800")
+app.title("C:\\PROGRAMS\\OPENTBR\\OPEN_TBR.EXE")
+
+app.mainloop()
+</code></pre>
+<p>So for this code block, we have imported customtkinter as ctk and we defined a variable named app as being equal to ctk.CTk().</p>
+<p>Now, we assign some properties to the app variable such as geometry. Geometry tells Python how big to make the window. In my case, I chose to make the window 1200 pixels wide and 800 pixels tall. This fits nicely on the screen of my Dell Inspiron 15 laptop and will likely fit well on laptop screens, including 13&quot; models as there is a nice amount of space around the window left over.</p>
+<p>The property for title gives the window a title - in this case, I chose to give it a fun title of C:\PROGRAMS\OPENTBR\OPEN_TBR.EXE &lt;&lt;&lt; this will show in the title bar of the window.</p>
+<p>The last piece is app.mainloop() - which is what calls the window into being when <a href="http://app.py">app.py</a> is run. This part appears in both versions.</p>
+<h4>Method 2 &gt; Class</h4>
+<p>Our <a href="http://app.py">app.py</a> still starts with importing customtkinter, but from there on, we'll be using a different method - class - to handle creating the window.</p>
+<pre><code>
+import customtkinter as ctk
+
+class App(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+        self.geometry("1200x800")
+        self.title("C:\\PROGRAMS\\OPENTBR\\OPEN_TBR.EXE")
+
+app = App()
+app.mainloop()
+</code></pre>
+<p>So in this version, instead of using a function, we've used a class and added definitions to create the window. The class method is considered the &quot;best practice&quot; method, at least according to the video I watched by <a href="https://www.youtube.com/watch?v=Yp8tmXt76wk" target="_blank">Pybeginners on Youtube</a> about doing this. But it still needs the app.mainloop() to call the window into existence when the code is run.</p>
+<p>In the terminal, I put py <a href="http://app.py">app.py</a> to run the program and call up the window. Regardless of which method you use to call it up, it looks like this:</p>
+<img src="images/pythonwindow0001.png" alt="OpenTBR blank screen">
+<p>So that's part one of creating the OpenTBR app using Python and customtkinter. The next step will be to add a list of entries into the window.</p>
+
+  </section>
+
+  <footer class="note-footer">
+    <div class="end-of-file">(END)</div>
+    <nav class="post-navigation">
+      <a href="/labs/">[ BACK_TO_DIRECTORY ]</a>
+    </nav>
+  </footer>
+</article>
+    <span class="cursor">█</span>
+  </main>
+</div>
+<script src="/assets/js/stayHere.js"></script>
+<script src="/assests/js/copyClipboard.js"></script>
+<script src="/assets/js/safeMode.js"></script>
+</body>
+</html>
