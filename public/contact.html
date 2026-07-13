@@ -69,7 +69,8 @@
 <div class="terminal-contact">
   <p class="prompt">guest@cgambledev:~$ mail --to admin</p>
   
-  <form name="contact" method="POST" data-netlify="true" action="/success">
+  <form action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="fa121ea2-3d54-4c4c-a040-9b234caeb0e2">
     <div class="form-group">
       <label for="name">FROM:</label>
       <input type="text" id="name" name="name" placeholder="identity_required" required>
