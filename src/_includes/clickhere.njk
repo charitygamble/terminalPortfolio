@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv=""X-UA-Compatible" content="IE=edge">
-        <title>Charity Gamble - Charity Gamble - Log In</title>
+        <title>Charity Gamble - {{ title }}</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">   
@@ -12,22 +12,6 @@
         <script src="https://kit.fontawesome.com/7ee24494c8.js" crossorigin="anonymous"></script>
     </head>
     <body>
-    <div class="login">
-cgambledev - login
-<div class="login-box">
-<br>
-Warning: This site is best viewed on a computer...
-<br><br>
-<div class="username">
-guest
-</div>
-<div class="password">
-****************
-</div>
-<div class="desktop">
-<a href="desktop.html">Log In</a>
-</div>
-</div>
-</div>
+    {{ content | safe }}
     </body>
     </html>
