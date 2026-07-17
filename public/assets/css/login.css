@@ -1,0 +1,122 @@
+/* CSS Variables */
+:root {
+    --bg-color: #1a1a1a;
+    --bg-code: #2a2a2a;
+    --bg-pre: #111;
+    --text-color: #00ff41;
+    --accent-color: #008f11;
+    --term-amber: #ffb86c;
+    --dot-red: #ff5f56;
+    --dot-yellow: #ffbd2e;
+    --dot-green: #27c93f;
+    --scroll-color: #333;
+    --white: #fff;
+    --black: #000;
+    --prism-text: #f8f8f2;
+    --prism-bg: #0d0d0d;
+    --prism-comment: #6272a4;
+    --prism-deleted: #ff79c6;
+    --prism-boolean: #bd93f9;
+    --prism-builtin: #50fa7b;
+    --prism-attr: #f1fa8c;
+    --prism-keyword: #8be9fd;
+    --terminal-border: #555;
+    --terminal-color: #888;
+    --neofetch-black: #282a36;
+    --neofetch-red: #ff5555;
+    --file-meta: #666;
+    --btn-terminal: #00ff00;
+    --social-border: #004400;
+    --font-mono: 'JetBrains Mono','Fira Code', monospace;
+}
+
+/* HTML & Body */
+html, body {
+    background: var(--prism-bg);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--bg-color);
+    box-shadow: inset 0 0 62.5rem rgba(0,0,0,0.3);
+    color: var(--text-color);
+    font-family: var(--font-mono);
+    padding: 20px;
+    line-height: 1.6;
+    display: block;
+}
+
+/* Login Screen */
+
+.login-wrap {
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.login {
+    height: 300px;
+    width: 500px;
+    border: 2px var(--dot-green) solid;
+    border-radius: 20px;
+    background-color: var(--accent-color);
+    box-sizing: border-box;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    height: 265px;
+    margin-top: 5px;
+    background-color: var(--bg-color);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.username {
+    height: 30px;
+    width: 200px;
+    border: 2px var(--text-color) solid;
+    border-radius: 5px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.password {
+    height: 30px;
+    width: 200px;
+    border: 2px var(--text-color) solid;
+    border-radius: 5px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.desktop {
+    height: 30px;
+    width: 75px;
+    border: 2px var(--text-color) solid;
+    border-radius: 5px;
+    padding: 5px;
+    margin: auto;
+}
+
+.desktop a {
+    color: var(--btn-terminal);
+    text-decoration: none;
+}
+
+.desktop a:hover {
+    text-decoration: none;
+    color: var(--btn-terminal);
+    background-color: var(--bg-color);
+}
